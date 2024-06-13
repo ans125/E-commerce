@@ -2,7 +2,7 @@
 <html class="no-js" lang="en_AU">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>E com website</title>
+	<title>Service It</title>
 	<meta name="description" content="" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1, user-scalable=no" />
 
@@ -34,6 +34,7 @@
 	<link rel="stylesheet" type="text/css" href="{{ asset('front-assets/css/slick.css') }}" />
 	<link rel="stylesheet" type="text/css" href="{{ asset('front-assets/css/slick-theme.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('front-assets/css/style.css') }}" />
+	<link rel="stylesheet" type="text/css" href="{{ asset('front-assets/css/service.css') }}" />
 
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -43,34 +44,116 @@
 	<!-- Fav Icon -->
 	<link rel="shortcut icon" type="image/x-icon" href="#" />
 	<meta name="csrf-token" content="{{ csrf_token()}}">
+	<style>
+		.navbar-brand img {
+			/* Adjust the size of the logo */
+			height: 100px; /* Set your desired height */
+			width: auto; /* Keeps the aspect ratio */
+			max-width: 100%; /* Ensures the image doesn’t overflow */
+		}
+		.text-white {
+    --bs-text-opacity: 1;
+	color: #f7ca0d !important;
+}
+.img-fluid {
+    max-width: auto;
+    height: 4rem;
+    /* width: 6rem; */
+}
+
+.btn-outline-light {
+    color: #f7ca0d !important;
+    border-color: #f7ca0d;
+}
+.section-1 .carousel .carousel-inner .carousel-caption div {
+    width: 800px;
+    background-color: #00000054;
+    border-radius: 2rem;
+}
+.carousel-caption {
+    position: absolute;
+    right: 15%;
+    bottom: 1.25rem;
+    left: 15%;
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+    color: #f7ca0d;
+    text-align: center;
+}
+		.navbar .nav-link {
+            color: #333; /* Dark text for contrast */
+            /* font-weight: bold; */
+        }
+		.navbar-nav .nav-item {
+            margin-left: 15px; /* Space between nav items */
+        }
+		.navbar-light .navbar-nav .nav-link {
+    color: #212529;
+}
+
+        .navbar-nav .nav-link {
+            text-transform: uppercase;
+        }
+		@media (min-width: 992px) {
+    .navbar-expand-lg {
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        margin-bottom: -40px;
+        margin-top: -12px;}
+		@media (min-width: 992px) {
+    .navbar-expand-lg .navbar-nav {
+        flex-direction: row;
+        background-color: #f7ca0d;
+    }
+	
+}
+}
+	</style>
 </head>
 <body data-instant-intensity="mousedown">
 
-<div class="bg-light top-header">        
-	<div class="container">
-		<div class="row align-items-center py-3 d-none d-lg-flex justify-content-between">
-			<div class="col-lg-4 logo">
-				<a href="index.php" class="text-decoration-none">
-					<span class="h1 text-uppercase text-primary bg-dark px-2">Online</span>
-					<span class="h1 text-uppercase text-dark bg-primary px-2 ml-n1">SHOP</span>
-				</a>
-			</div>
-			<div class="col-lg-6 col-6 text-left  d-flex justify-content-end align-items-center">
-				<a href="account.php" class="nav-link text-dark">My Account</a>
-				<form action="">					
-					<div class="input-group">
-						<input type="text" placeholder="Search For Products" class="form-control" aria-label="Amount (to the nearest dollar)">
-						<span class="input-group-text">
-							<i class="fa fa-search"></i>
-					  	</span>
-					</div>
-				</form>
-			</div>		
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<div class="container nav-con">
+		  <a class="navbar-brand" href="#">
+			<img height="500px" width="500px" src="{{ asset('front-assets/images/logo.png') }}" alt="" />
+		  </a>
+		  <div class="nav-center">
+			<ul class="navbar-nav">
+				<li class="nav-item">
+					<a class="nav-link link-color" href="{{ route('front.home') }}">HOME</a>
+				  </li>
+			  <li class="nav-item">
+				<a class="nav-link link-color" href="#CATEGORIES">BOOK NOW</a>
+			  </li>
+			  <li class="nav-item">
+				<a class="nav-link link-color" href="{{ route('front.beforeafter') }}">BEFORE & AFTER</a>
+			  </li>
+			  <li class="nav-item">
+				<a class="nav-link link-color" href="{{ route('front.contactus') }}">CONTACT US</a>
+			  </li>
+			  <li class="nav-item">
+				<a class="nav-link link-color" href="{{ route('front.aboutus') }}">ABOUT US</a>
+			  </li>
+			</ul>
+		  </div>
+		  <div class="ml-auto">
+			<ul class="navbar-nav">
+			  <li class="nav-item">
+				<a class="nav-link link-color" href="{{ route('account.login') }}">Login</a>
+			  </li>
+			  <li class="nav-item">
+				<a class="nav-link link-color" href="{{ route('account.register') }}">Register</a>
+			  </li>
+			  <a href="{{ route('front.cart') }}" class="ml-3 pt-2">
+				<i class="fas fa-truck text-danger"></i> </a>
+			
+			
+			</ul>
+		  </div>
 		</div>
-	</div>
-</div>
-
-<header class="bg-dark">
+	  </nav>
+  
+<header>
 	<div class="container">
 		<nav class="navbar navbar-expand-xl" id="navbar">
 			<a href="index.php" class="text-decoration-none mobile-logo">
@@ -86,7 +169,7 @@
         			<!-- <li class="nav-item">
           				<a class="nav-link active" aria-current="page" href="index.php" title="Products">Home</a>
         			</li> -->
-                    @if(getCategories()->isNotEmpty())
+                    {{-- @if(getCategories()->isNotEmpty())
                     @foreach (getCategories() as $category)
                         
 
@@ -103,7 +186,7 @@
 						</ul>
 					</li>
                     @endforeach
-                    @endif
+                    @endif --}}
 					{{-- <li class="nav-item dropdown">
 						<button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
 							Men's Fashion
@@ -147,11 +230,7 @@
 					 --}}
       			</ul>      			
       		</div>   
-			<div class="right-nav py-0">
-				<a href="cart.php" class="ml-3 d-flex pt-2">
-					<i class="fas fa-shopping-cart text-primary"></i>					
-				</a>
-			</div> 		
+				
       	</nav>
   	</div>
 </header>
@@ -160,58 +239,50 @@
 @yield('content')
 @yield('customjs')
 </main>
+<div class="container">
+    <div class="row">
+        <div class="col-md-10 offset-md-1">
+            <h2 class="text-center mb-4 text-uppercase" >Car Wash Services, Pakistan</h2>
+            <div class="p-4 bg-light" style="border-radius: 15px;">
+                <p class="lead ">In Pakistan, cars are a primary mode of transport for most residents, and some might even consider them their second home. This makes it crucial to keep them clean and well-maintained. While many car owners prefer to clean their vehicles at home to save money, professional cleaning not only ensures a thorough clean but also prolongs the life of the vehicle without risking damage.</p>
+                <p class="lead ">Our Mobile Car Wash service in Pakistan often encounters customers who are firm believers in DIY car washing. However, our service and affordability often change their minds. At Washmycar.pk, we go beyond just professional cleaning; we focus on providing exceptional service to each customer. Hours on the road can affect your vehicle, no matter where you are in Pakistan.</p>
+                <p class="lead ">We understand the routes in all the areas we serve and have the necessary tools to leave your car in top condition once we are done. Beyond major cities like Karachi, our Mobile Car Valeting in Lahore ensures the same high standard of service that you won't find elsewhere.</p>
+                <p class="lead ">Looking for Mobile Car Valeting in Islamabad? Washmycar.pk is here for you. The services we offer and the time needed to restore your vehicle to its gleaming condition depend on its current state. Some vehicles require more attention than others based on their age and usage. But we come prepared with the right tools and equipment to clean your car, making a noticeable difference in its before and after condition.</p>
+                <p class="lead ">Additionally, we offer mobile car valeting in cities like Lahore with the quality we promise throughout Pakistan. For every order booked through our website or on call, our customer service team ensures all necessary details are gathered to prepare for your car wash. As a mobile service, we come to your doorstep, bringing over a decade of experience in providing the exclusive attention each of our customers deserves.</p>
+                <p class="lead ">The same principles of service and quality apply to our Mobile Car Valeting in Karachi. For most of our external valeting services, customers don’t need to be present. Our expert will arrive at your provided address and complete the job. Once the service is rendered, you will receive an email with before and after pictures of your vehicle confirming the job is done. You can also book an internal cleaning even if you are not available in person by leaving a note with your requirements and personal items. Our expert will complete the job as promised, and you will receive an email afterward.</p>
+                <p class="lead ">You don’t need to worry about providing us with anything except the location of your car. Our expert will be fully equipped with all the tools needed to get the job done without the need for you to supply water or electricity.</p>
+                <p class="lead ">If you are searching for a company that offers Mobile Car Valeting in Lahore with all the above-mentioned services, book your service with us today. We are also available in Karachi and Islamabad and will provide you the best valeting service your car has ever received. Our aim is to help improve the overall lifespan of your vehicle, not just clean it once. A well-maintained vehicle can go a long way, and we are here to assist you in maintaining your car.</p>
+            </div>
+        </div>
+    </div>
+</div>
 
 
-<footer class="bg-dark mt-5">
-	<div class="container pb-5 pt-3">
-		<div class="row">
-			<div class="col-md-4">
-				<div class="footer-card">
-					<h3>Get In Touch</h3>
-					<p>No dolore ipsum accusam no lorem. <br>
-					123 Street, New York, USA <br>
-					exampl@example.com <br>
-					000 000 0000</p>
-				</div>
-			</div>
 
-			<div class="col-md-4">
-				<div class="footer-card">
-					<h3>Important Links</h3>
-					<ul>
-						<li><a href="about-us.php" title="About">About</a></li>
-						<li><a href="contact-us.php" title="Contact Us">Contact Us</a></li>						
-						<li><a href="#" title="Privacy">Privacy</a></li>
-						<li><a href="#" title="Privacy">Terms & Conditions</a></li>
-						<li><a href="#" title="Privacy">Refund Policy</a></li>
-					</ul>
-				</div>
-			</div>
-
-			<div class="col-md-4">
-				<div class="footer-card">
-					<h3>My Account</h3>
-					<ul>
-						<li><a href="{{ route('account.login') }}" title="Sell">Login</a></li>
-						<li><a href="{{ route('account.register') }}" title="Advertise">Register</a></li>
-						<li><a href="{{ route('front.cart') }}" title="Contact Us">My Orders</a></li>						
-					</ul>
-				</div>
-			</div>			
-		</div>
-	</div>
-	<div class="copyright-area">
-		<div class="container">
-			<div class="row">
-				<div class="col-12 mt-3">
-					<div class="copy-right text-center">
-						<p>© Copyright 2022 Amazing Shop. All Rights Reserved</p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</footer>
+<footer class="text-center text-white" style="background-color: #094d89;">
+    <!-- Grid container -->
+    <div class="container p-4">
+      <!-- Section: Iframe -->
+      <section class="">
+        <div class="row d-flex justify-content-center">
+          <div class="col-lg-6">
+            <div class="ratio ratio-16x9">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/m-TQyYOV2fY?si=j5mvUuQ2mVQcZCf1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Section: Iframe -->
+    </div>
+    <!-- Grid container -->
+  
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+      © 2024 Copyright:
+      <a class="text-white" href="Service It.html">Service it </a> All Rights Reserved
+    </div>
+    <!-- Copyright -->
+  </footer>
 <script src="{{ asset('front-assets/js/jquery-3.6.0.min.js') }}"></script>
 <script src="{{ asset('front-assets/js/bootstrap.bundle.5.1.3.min.js') }}"></script>
 <script src="{{ asset('front-assets/js/instantpages.5.1.0.min.js') }}"></script>

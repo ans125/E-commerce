@@ -4,14 +4,30 @@ use App\Http\Controllers\admin\AdminLoginController;
 use App\Http\Controllers\admin\BrandController;
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\HomeController;
+use App\Http\Controllers\admin\OrderController;
 use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\TempImagesController;
+use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\ShopController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Mail;
 
+
+
+
+
+// Route::get('test-mail', function () {
+//     $details = [
+//         'name' => 'Test User',
+//         'email' => 'su94-adcsm-f22-029@superior.edu.pk',
+//         'message' => 'This is a test message'
+//     ];
+//     Mail::to('su94-adcsm-f22-029@superior.edu.pk')->send(new \App\Mail\ContactMail($details));
+//     return 'Test mail sent!';
+// });
 
 /*
 |--------------------------------------------------------------------------
@@ -27,12 +43,24 @@ Route::get('/',[FrontController::class,'index'])->name('front.home');
 Route::get('/shop',[ShopController::class,'index'])->name('front.shop');
 Route::get('/product/{slug}',[ShopController::class,'product'])->name('front.product');
 Route::get('/cart',[CartController::class,'cart'])->name('front.cart');
+Route::get('/aboutus',[HomeController::class,'aboutus'])->name('front.aboutus');
+Route::get('/beforeafter',[HomeController::class,'beforeafter'])->name('front.beforeafter');
 Route::post('/add-to-cart',[CartController::class,'addToCart'])->name('front.addToCart');
 Route::post('/update-cart',[CartController::class,'updateCart'])->name('front.updateCart');
 Route::post('/delete-item', [CartController::class,'deleteItem'])->name('front.deleteItem.cart');
 
+Route::get('/contactus', [HomeController::class, 'contactus'])->name('front.contactus');
+Route::post('/contactus', [HomeController::class, 'sendContactForm'])->name('front.contactus.post');
+
 
 Route::get('/checkout', [CartController::class,'checkout'])->name('front.checkout');
+Route::post('/process-checkout', [CartController::class,'processCheckout'])->name('front.processCheckout');
+// Route::get('/thanks/{orderId}', [CartController::class,'thankyou'])->name('front.thankyou');
+Route::get('/thanks', [CartController::class,'thankyou'])->name('front.thankyou');
+
+// Route::get('/thanks/{order}', [CartController::class, 'thankyou'])->name('front.thanks');
+
+
 
 // userlogin
 
@@ -46,12 +74,14 @@ Route::get('/checkout', [CartController::class,'checkout'])->name('front.checkou
             Route::post('/login', [AuthController::class, 'authenticate'])->name('account.authenticate');
             Route::get('/register', [AuthController::class, 'register'])->name('account.register');
             Route::post('/process-register', [AuthController::class, 'processRegister'])->name('account.processRegister');
+            // Route::post('/logout', [AuthController::logout])->name('logout');
         });
         
         
         Route::group(['middleware'=>'auth'],function(){
             Route::get('/profile', [AuthController::class, 'profile'])->name('account.profile');
             Route::get('/logout', [AuthController::class, 'logout'])->name('account.logout');
+            Route::post('/logout', [AuthController::class, 'logout'])->name('account.logout');
     
     });
 });
@@ -84,7 +114,16 @@ Route::group(['prefix'=> 'admin'], function () {
         // products routes
         Route::get('/products/create',[ProductController::class,'create'])->name('products.create');
         Route::post('/products',[ProductController::class,'store'])->name('products.store');
-        
+        // orders route
+
+        Route::get('/orders', [OrderController::class,'index'])->name('orders.index');
+
+
+        // user route
+
+        Route::get('/users', [UserController::class,'index'])->name('users.index');
+
+
         
         // Get slug route
         Route::get('/admin/getSlug', [CategoryController::class, 'getSlug'])->name('getSlug');

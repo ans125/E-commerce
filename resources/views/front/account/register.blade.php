@@ -4,8 +4,8 @@
     <section class="section-5 pt-3 pb-3 mb-3 bg-white">
         <div class="container">
             <div class="light-font">
-                <ol class="breadcrumb primary-color mb-0">
-                    <li class="breadcrumb-item"><a class="white-text" href="#">Home</a></li>
+                <ol class="breadcrumb primary-color mb-0" style="padding-top: 2rem !important;}">
+                    <li class="breadcrumb-item"><a class="white-text" href="{{ route('front.home') }}">Home</a></li>
                     <li class="breadcrumb-item">Register</li>
                 </ol>
             </div>
@@ -17,12 +17,15 @@
             <div class="login-form">    
                 <form action="" method="post" name="registrationForm" id="registrationForm">
                     @csrf
-                    <h4 class="modal-title">Register Now</h4>
+                    <h4 class="modal-title"> Register Now</h4>
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="Name" id="name" name="name">
                     </div>
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="Email" id="email" name="email">
+                    </div>
+                    <div class="form-group">
+                        <input type="phone" class="form-control" placeholder="phone" id="phone" name="phone">
                     </div>
                     
                     <div class="form-group">

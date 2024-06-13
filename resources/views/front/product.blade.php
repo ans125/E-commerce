@@ -3,7 +3,10 @@
 <section class="section-5 pt-3 pb-3 mb-3 bg-white">
     <div class="container">
         <div class="light-font">
-            <ol class="breadcrumb primary-color mb-0">
+            <ol class="breadcrumb primary-color mb-0" style="
+                padding-top: 2rem !important;
+            }
+            ">
                 <li class="breadcrumb-item"><a class="white-text" href="{{ route('front.home') }}">Home</a></li>
                 <li class="breadcrumb-item"><a class="white-text" href="{{ route('front.home') }}">Shop</a></li>
                 <li class="breadcrumb-item">{{ $product->title }}</li>
@@ -19,16 +22,16 @@
                 <div id="product-carousel" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner bg-light">
                         <div class="carousel-item active">
-                            <img class="w-100 h-100" src="images/product-2.jpg" alt="Image">
+                            <img class="w-100 h-100" src="{{ asset('front-assets/images/product-1.jpg') }}" alt="Image">
                         </div>
                         <div class="carousel-item">
-                            <img class="w-100 h-100" src="images/product-1.jpg" alt="Image">
+                            <img class="w-100 h-100" src="{{ asset('front-assets/images/product-1.jpg') }}" alt="Image">
                         </div>
                         <div class="carousel-item">
-                            <img class="w-100 h-100" src="images/product-3.jpg" alt="Image">
+                            <img class="w-100 h-100" src="{{ asset('front-assets/images/product-1.jpg') }}" alt="Image">
                         </div>
                         <div class="carousel-item">
-                            <img class="w-100 h-100" src="images/product-4.jpg" alt="Image">
+                            <img class="w-100 h-100" src="{{ asset('front-assets/images/product-1.jpg') }}" alt="Image">
                         </div>
                     </div>
                     <a class="carousel-control-prev" href="#product-carousel" role="button" data-bs-slide="prev">
@@ -52,14 +55,17 @@
                             <small class="fas fa-star-half-alt"></small>
                             <small class="far fa-star"></small>
                         </div>
-                        <small class="pt-1">(99 Reviews)</small>
+                        <small class="pt-1">( Reviews)</small>
                     </div>
                     @if($product->compare_price > 0)
                         <h2 class="price text-secondary"><del>{{ $product->compare_price }}</del></h2>
                     @endif
-                    <h2 class="price">${{ $product->price }}</h2>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perferendis officiis dolor aut nihil iste porro ullam repellendus inventore voluptatem nam veritatis exercitationem doloribus voluptates dolorem nobis voluptatum qui, minus facere.</p>
-                    <a href="javascript:void(0);" onclick="addToCart({{ $product->id }});" class="btn btn-dark"><i class="fas fa-shopping-cart"></i> &nbsp;ADD TO CART</a>
+                    <h2 class="price">PKR {{ $product->price }}</h2>
+                    {{-- <div class="tab-pane fade" id="shipping" role="tabpanel" aria-labelledby="shipping-tab"> --}}
+                        <p>At Service It, our exterior car wash service is designed to give your vehicle a thorough clean, removing dirt, grime, and other contaminants from the exterior surfaces. Our trained professionals use high-quality cleaning products and equipment to ensure a sparkling finish without causing any damage to your vehicle's paintwork.</p>
+                    {{-- </div> --}}
+                    
+                    <a href="javascript:void(0);" onclick="addToCart({{ $product->id }});" class="btn btn-dark"><i class="fas fa-shopping-cart"></i> &nbsp;Book Now</a>
                 </div>
             </div>
 
@@ -81,8 +87,16 @@
                             {{ $product->description }}
                         </div>
                         <div class="tab-pane fade" id="shipping" role="tabpanel" aria-labelledby="shipping-tab">
-                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit, incidunt blanditiis suscipit quidem magnam doloribus earum hic exercitationem. Distinctio dicta veritatis alias delectus quaerat, quam sint ab nulla aperiam commodi. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit, incidunt blanditiis suscipit quidem magnam doloribus earum hic exercitationem. Distinctio dicta veritatis alias delectus quaerat, quam sint ab nulla aperiam commodi. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit, incidunt blanditiis suscipit quidem magnam doloribus earum hic exercitationem. Distinctio dicta veritatis alias delectus quaerat, quam sint ab nulla aperiam commodi.</p>
+                            <h3>Shipping Policy</h3>
+                            <p>At Service It, we strive to provide prompt and reliable shipping services to our valued customers. Once your order is confirmed, we aim to dispatch it within 24 hours. Delivery times may vary depending on your location, but we work tirelessly to ensure your products reach you in a timely manner. For any inquiries regarding shipping, feel free to contact our customer service team.</p>
+                        
+                            <h3>Return Policy</h3>
+                            <p>We want you to be completely satisfied with your purchase from Service It. If for any reason you are not happy with your order, you may return it within 30 days for a full refund or exchange. Please ensure the item is in its original condition with all packaging intact. For detailed instructions on how to initiate a return, please visit our Returns page or contact our customer service team.</p>
+                        
+                            <h3>Cash on Delivery (COD) Policy</h3>
+                            <p>Service It offers a convenient Cash on Delivery (COD) option for customers who prefer to pay upon receiving their order. Simply select the COD option at checkout, and our delivery personnel will collect payment when delivering your items. Please note that COD is available for orders within certain regions and may be subject to additional charges. For any questions regarding COD, please contact our customer service team.</p>
                         </div>
+                        
                         <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
                         </div>
                     </div>

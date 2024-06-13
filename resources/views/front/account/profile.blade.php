@@ -1,6 +1,6 @@
 @extends('front.layouts.app')
 
-@section('content')
+{{-- @section('content') --}}
 <section class="section-5 pt-3 pb-3 mb-3 bg-white">
     <div class="container">
         <div class="light-font">
@@ -53,4 +53,4 @@
         </div>
     </div>
 </section>
-@endsection
+{{-- @endsection --}}

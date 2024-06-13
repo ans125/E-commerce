@@ -28,7 +28,7 @@ class ProductController extends Controller
             'title' => 'required',
             'slug' => 'required|unique:products',
             'price' => 'required|numeric',
-            'sku' => 'required|numeric',
+            'sku' => 'required',
             'track_qty' => 'required|in:Yes,No',
             'category' => 'required|numeric',
             'is_feature' => 'required|in:Yes,No',
@@ -40,55 +40,65 @@ class ProductController extends Controller
     
         $validator = Validator::make($request->all(), $rules);
     
-        if($validator->fails()) {
-            return response()->json(['status' => false, 'errors' => $validator->errors()]);
-        }
+        if($validator->passes()){
+            $product = Product::create([
+                'title' => $request->title,
+                'slug' => $request->slug,
+                'description' => $request->description,
+                'price' => $request->price,
+                'compare_price' => $request->compare_price,
+                'category_id' => $request->category,
+                'brand_id' => $request->brand,
+                'is_feature' => $request->is_feature,
+                'sku' => $request->sku,
+                'barcode' => $request->barcode,
+                'track_qty' => $request->track_qty,
+                'qty' => $request->track_qty == 'Yes' ? $request->qty : null,
+                'status' => $request->status,
+            ]);
     
-        $product = new Product();
-        $product->fill($request->all());
-        $product->save();
+            // Save images
+            if($request->has('image_array')) {
+                foreach($request->image_array as $tempImageId) {
+                    $tempImageInfo = TempImage::find($tempImageId);
+                    if($tempImageInfo) {
+                        $extArray = explode('.', $tempImageInfo->name);
+                        $ext = end($extArray);
     
-        // Save images
-        if($request->has('image_array')) {
-            foreach($request->image_array as $tempImageId) {
-                $tempImageInfo = TempImage::find($tempImageId);
-                if($tempImageInfo) {
-                    $extArray = explode('.', $tempImageInfo->name);
-                    $ext = end($extArray);
+                        $productImage = new ProductImage();
+                        $productImage->product_id = $product->id;
+                        $productImage->save();
     
-                    $productImage = new ProductImage();
-                    $productImage->product_id = $product->id;
-                    $productImage->save();
+                        $imageName = $product->id . '-' . $productImage->id . '-' . time() . '.' . $ext;
+                        $productImage->image = $imageName;
+                        $productImage->save();
     
-                    $imageName = $product->id . '-' . $productImage->id . '-' . time() . '.' . $ext;
-                    $productImage->image = $imageName;
-                    $productImage->save();
+                        // Ensure directory structure exists
+                        $destinationDirectory = public_path('/uploads/product/');
+                        if (!file_exists($destinationDirectory)) {
+                            mkdir($destinationDirectory, 0777, true);
+                        }
     
-                    // Ensure directory structure exists
-                    $destinationDirectory = public_path('/uploads/product/');
-                    if (!file_exists($destinationDirectory)) {
-                        mkdir($destinationDirectory, 0777, true);
+                        // Save large image
+                        $sourcePath = public_path('/temp/' . $tempImageInfo->name);
+                        $largeDestPath = public_path('/uploads/product/large/' . $imageName);
+                        $image = Image::make($sourcePath);
+                        $image->resize(1400, null, function ($constraint) {
+                            $constraint->aspectRatio();
+                        });
+                        $image->save($largeDestPath);
+    
+                        // Save small image
+                        $smallDestPath = public_path('/uploads/product/small/' . $imageName);
+                        $image = Image::make($sourcePath);
+                        $image->fit(300, 300);
+                        $image->save($smallDestPath);
                     }
-    
-                    // Save large image
-                    $sourcePath = public_path('/temp/' . $tempImageInfo->name);
-                    $largeDestPath = public_path('/uploads/product/large/' . $imageName);
-                    $image = Image::make($sourcePath);
-                    $image->resize(1400, null, function ($constraint) {
-                        $constraint->aspectRatio();
-                    });
-                    $image->save($largeDestPath);
-    
-                    // Save small image
-                    $smallDestPath = public_path('/uploads/product/small/' . $imageName);
-                    $image = Image::make($sourcePath);
-                    $image->fit(300, 300);
-                    $image->save($smallDestPath);
                 }
             }
+    
+            return response()->json(['status' => true, 'message' => 'Product added successfully']);
         }
-    
-        return response()->json(['status' => true, 'message' => 'Product added successfully']);
     }
-    
+        
 }

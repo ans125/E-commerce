@@ -117,4 +117,5 @@ class AuthController extends Controller
             return redirect()->route('front.home');
         }
     }
+    
 }

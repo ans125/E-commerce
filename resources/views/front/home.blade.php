@@ -15,9 +15,9 @@
 
                     <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                         <div class="p-3">
-                            <h1 class="display-4 text-white mb-3">Kids Fashion</h1>
-                            <p class="mx-md-5 px-5">Lorem rebum magna amet lorem magna erat diam stet. Sadips duo stet amet amet ndiam elitr ipsum diam</p>
-                            <a class="btn btn-outline-light py-2 px-4 mt-3" href="#">Shop Now</a>
+                            <h1 class="display-4 text-white mb-3">Car Product</h1>
+                            <p class="mx-md-5 px-5">Experience the best car wash service in Pakistan with state-of-the-art equipment and unparalleled customer care. Get your car cleaned to perfection, right at your doorstep.</p>
+                            <a class="btn btn-outline-light py-2 px-4 mt-3" href="#CATEGORIES">Learn More</a>
                         </div>
                     </div>
                 </div>
@@ -31,9 +31,9 @@
 
                     <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                         <div class="p-3">
-                            <h1 class="display-4 text-white mb-3">Womens Fashion</h1>
-                            <p class="mx-md-5 px-5">Lorem rebum magna amet lorem magna erat diam stet. Sadips duo stet amet amet ndiam elitr ipsum diam</p>
-                            <a class="btn btn-outline-light py-2 px-4 mt-3" href="#">Shop Now</a>
+                            <h1 class="display-4 text-white mb-3">Car Detailing</h1>
+                            <p class="mx-md-5 px-5">Transform your car with our premium detailing services, offering meticulous cleaning and restoration for every vehicle. Enhance your driving experience with a spotless finish, inside and out.</p>
+                            <a class="btn btn-outline-light py-2 px-4 mt-3" href="#FEATURED_PRODUCTS">Book Now</a>
                         </div>
                     </div>
                 </div>
@@ -48,9 +48,9 @@
 
                     <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                         <div class="p-3">
-                            <h1 class="display-4 text-white mb-3">Shop Online at Flat 70% off on Branded Clothes</h1>
-                            <p class="mx-md-5 px-5">Lorem rebum magna amet lorem magna erat diam stet. Sadips duo stet amet amet ndiam elitr ipsum diam</p>
-                            <a class="btn btn-outline-light py-2 px-4 mt-3" href="#">Shop Now</a>
+                            <h1 class="display-4 text-white mb-3">Book Online and Get Flat 40% Off on Services & Products</h1>
+                            <p class="mx-md-5 px-5">Enjoy an exclusive 40% discount when you book our car wash services or purchase products online. Elevate your car care routine with premium services and top-quality products at unbeatable prices.</p>
+                            <a class="btn btn-outline-light py-2 px-4 mt-3" href="#CATEGORIES">Shop Now</a>
                         </div>
                     </div>
                 </div>
@@ -71,34 +71,34 @@
                 <div class="col-lg-3">
                     <div class="box shadow-lg">
                         <div class="fa icon fa-check text-primary m-0 mr-3"></div>
-                        <h2 class="font-weight-semi-bold m-0">Quality Product</h5>
+                        <h2 class="font-weight-semi-bold m-0">Quality Services</h2>
                     </div>                    
                 </div>
                 <div class="col-lg-3 ">
                     <div class="box shadow-lg">
                         <div class="fa icon fa-shipping-fast text-primary m-0 mr-3"></div>
-                        <h2 class="font-weight-semi-bold m-0">Free Shipping</h2>
+                        <h2 class="font-weight-semi-bold m-0">Fast Service</h2>
                     </div>                    
                 </div>
                 <div class="col-lg-3">
                     <div class="box shadow-lg">
                         <div class="fa icon fa-exchange-alt text-primary m-0 mr-3"></div>
-                        <h2 class="font-weight-semi-bold m-0">14-Day Return</h2>
+                        <h2 class="font-weight-semi-bold m-0">1-Day Trial</h2>
                     </div>                    
                 </div>
                 <div class="col-lg-3 ">
                     <div class="box shadow-lg">
                         <div class="fa icon fa-phone-volume text-primary m-0 mr-3"></div>
-                        <h2 class="font-weight-semi-bold m-0">24/7 Support</h5>
+                        <h2 class="font-weight-semi-bold m-0">24/7 Support</h2>
                     </div>                    
                 </div>
             </div>
         </div>
     </section>
-    <section class="section-3">
+    <section id="CATEGORIES" class="section-3">
         <div class="container">
             <div class="section-title">
-                <h2>Categories</h2>
+                <h2>Car Categories</h2>
             </div>           
             <div class="row pb-3">
                 @if(getCategories()->isNotEmpty())
@@ -131,40 +131,42 @@
         </div>
     </section>
     
-    <section class="section-4 pt-5">
+    <section id="FEATURED_PRODUCTS" class="section-4 pt-5">
         <div class="container">
             <div class="section-title">
-                <h2>Featured Products</h2>
+                <h2>Featured Services/Products</h2>
             </div>    
             <div class="row pb-3">
                 @if (isset($featuredProducts) && $featuredProducts->isNotEmpty())
                     @foreach ($featuredProducts as $product)
-
-                    @php
-                        $productImage = $product->product_images;
-
-                    @endphp
                         <div class="col-md-3">
                             <div class="card product-card">
                                 <div class="product-image position-relative">
                                     <a href="{{ route("front.product",$product->slug) }}" class="product-img">
-                                        @if (!empty ($productImage->image))
-                                        <img class="card-img-top" src="{{ asset('uploads/category/'.$category->image) }}" alt="" class="img-fluid">
-                                        @else
-                                        <img class="card-img-top" src="{{ asset('front-assets/images/product-1.jpg') }}" alt="">
-                                        @endif
+                                        <!-- Manually specify the image paths here -->
+                                        @if($loop->iteration == 1)
+                                            <img class="card-img-top" src="{{ asset('front-assets/images/product-1.jpg') }}" alt="">
+                                        @elseif($loop->iteration == 2)
+                                            <img class="card-img-top" src="{{ asset('front-assets/images/product-2.jpg') }}" alt="">
+                                        @elseif($loop->iteration == 3)
+                                            <img class="card-img-top" style="height: 24.5rem;" src="{{ asset('front-assets/images/product-3.jpg') }}" alt="">
+
+                                        @elseif($loop->iteration == 4)
+                                        <img class="card-img-top" src="{{ asset('front-assets/images/product-4.jpg') }}" alt="">
+                                    @endif
                                     </a>
+                                    
                                     <a class="wishlist" href="222"><i class="far fa-heart"></i></a>                            
                                     <div class="product-action">
                                         <a class="btn btn-dark" href="javascript:void(0);" onclick="addToCart({{ $product->id }});">
-                                            <i class="fa fa-shopping-cart"></i> Add To Cart
+                                            <i class="fa fa-shopping-cart"></i> book in Quantity
                                         </a>                            
                                     </div>
                                 </div>                        
                                 <div class="card-body text-center mt-3">
                                     <a class="h6 link" href="product.php">{{ $product->title }}</a>
                                     <div class="price mt-2">
-                                        <span class="h5"><strong>{{ $product->price }}</strong></span>
+                                        <span class="h5"><strong>PKR-{{ $product->price }}</strong></span>
                                         @if($product->compare_price > 0)
                                             <span class="h6 text-underline">
                                                 <del>{{ $product->compare_price }}</del>
@@ -182,6 +184,4 @@
         </div>
     </section>
 
-    @endsection
-
-    
+@endsection

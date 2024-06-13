@@ -2,7 +2,7 @@
     <!-- Brand Logo -->
     <a href="#" class="brand-link">
         <img src="{{ asset('admin-assets/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">LARAVEL SHOP</span>
+        <span class="brand-text font-weight-light">Service It</span>
     </a>
     <!-- Sidebar -->
     <div class="sidebar">
@@ -12,10 +12,16 @@
                 <!-- Add icons to the links using the .nav-icon class
                     with font-awesome or any other icon font library -->
                 <li class="nav-item">
-                    <a href="{{ route('categories.create') }}" class="nav-link">
+                    <a href="{{ route('admin.dashboard') }}" class="nav-link">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>Dashboard</p>
                     </a>																
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('categories.create') }}" class="nav-link">
+                        <i class="nav-icon fas fa-plus"></i>  <p>Create Category</p>
+                    </a>
+                                                                                
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('categories.index') }}" class="nav-link">
@@ -38,23 +44,16 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('categories.create') }}" class="nav-link">
+                    <a href="{{ route('products.create') }}" class="nav-link">
                         <i class="nav-icon fas fa-tag"></i>
                         <p>Products</p>
                     </a>
                 </li>
-                
+                						
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <!-- <i class="nav-icon fas fa-tag"></i> -->
-                        <i class="fas fa-truck nav-icon"></i>
-                        <p>Shipping</p>
-                    </a>
-                </li>							
-                <li class="nav-item">
-                    <a href="orders.html" class="nav-link">
+                    <a href="{{ route('orders.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-shopping-bag"></i>
-                        <p>Orders</p>
+                        <p>Booking</p>
                     </a>
                 </li>
                 {{-- <li class="nav-item">
@@ -64,7 +63,7 @@
                     </a>
                 </li> --}}
                 <li class="nav-item">
-                    <a href="users.html" class="nav-link">
+                    <a href="{{ route('users.index') }}" class="nav-link">
                         <i class="nav-icon  fas fa-users"></i>
                         <p>Users</p>
                     </a>

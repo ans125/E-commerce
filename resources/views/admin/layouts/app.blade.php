@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Laravel Shop :: Administrative Panel</title>
+		<title>Service It-Administrative Panel</title>
 		<!-- Google Font: Source Sans Pro -->
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 		<!-- Font Awesome -->
@@ -27,7 +27,7 @@
 				<!-- Right navbar links -->
 				<ul class="navbar-nav">
 					<li class="nav-item">
-					  	<a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+					  	<a class="nav-link" data-widget="pushmenu" href="{{ route('categories.create') }}" role="button"><i class="fas fa-bars"></i></a>
 					</li>					
 				</ul>
 				<div class="navbar-nav pl-2">
@@ -50,13 +50,13 @@
 							<h4 class="h4 mb-0"><strong>{{ Auth::guard('admin')->user()->name }}</strong></h4>
 							<div class="mb-3">{{ Auth::guard('admin')->user()->email }}</div>
 							<div class="dropdown-divider"></div>
-							<a href="#" class="dropdown-item">
+							{{-- <a href="#" class="dropdown-item">
 								<i class="fas fa-user-cog mr-2"></i> Settings								
 							</a>
 							<div class="dropdown-divider"></div>
 							<a href="#" class="dropdown-item">
 								<i class="fas fa-lock mr-2"></i> Change Password
-							</a>
+							</a> --}}
 							<div class="dropdown-divider"></div>
 							<a href="{{ route('admin.logout') }}" class="dropdown-item text-danger">
 								<i class="fas fa-sign-out-alt mr-2"></i> Logout							
@@ -77,7 +77,7 @@
 			<!-- /.content-wrapper -->
 			<footer class="main-footer">
 				
-				<strong>Copyright &copy; 2014-2022 AmazingShop All rights reserved.
+				<strong>Copyright &copy; 2023-2024 Service It All rights reserved.
 			</footer>
 			
 		</div>
@@ -101,7 +101,7 @@
 
 				$(document).ready(function() {
 			$(".summernote").summernote({
-				height: 250
+				height: 150
 			});
 		});
 
